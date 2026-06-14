@@ -3,37 +3,36 @@ import Image from "next/image"
 
 const localResources = [
   {
-    city: "Telêmaco Borba",
-    resources: [
-      { name: "CRAS - Centro de Referência de Assistência Social", address: "Rua Ponta Grossa, 1000 - Centro", phone: "(42) 3271-8100" },
-      { name: "CREAS - Centro de Referência Especializado", address: "Rua Engenheiro Schamber, 950", phone: "(42) 3271-8150" },
-      { name: "Conselho Tutelar", address: "Rua Vidal de Negreiros, 251", phone: "(42) 3271-8200" },
-      { name: "Secretaria de Assistência Social", address: "Rua Ponta Grossa, 1000", phone: "(42) 3271-8000" }
-    ]
+    city: "Telêmaco Borba - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
   },
   {
-    city: "Reserva",
-    resources: [
-      { name: "CRAS", address: "Rua Prefeito Alcides Prestes, Centro", phone: "(42) 3257-1300" },
-      { name: "Conselho Tutelar", address: "Centro", phone: "(42) 3257-1200" },
-      { name: "Secretaria de Assistência Social", address: "Prefeitura Municipal", phone: "(42) 3257-1000" }
-    ]
+    city: "Reserva - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
   },
   {
-    city: "Ortigueira",
-    resources: [
-      { name: "CRAS", address: "Rua Coronel Luiz Lustosa, Centro", phone: "(42) 3277-1200" },
-      { name: "Conselho Tutelar", address: "Centro", phone: "(42) 3277-1150" },
-      { name: "Secretaria de Assistência Social", address: "Prefeitura Municipal", phone: "(42) 3277-1000" }
-    ]
+    city: "Ortigueira - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
   },
   {
-    city: "Imbaú",
-    resources: [
-      { name: "CRAS", address: "Centro", phone: "(42) 3276-1100" },
-      { name: "Conselho Tutelar", address: "Prefeitura Municipal", phone: "(42) 3276-1050" },
-      { name: "Secretaria de Assistência Social", address: "Prefeitura Municipal", phone: "(42) 3276-1000" }
-    ]
+    city: "Imbaú - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
+  },
+  {
+    city: "Tibagi - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
+  },
+  {
+    city: "Cândido de Abreu - PR",
+    resources: ["CRAS", "CREAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
+  },
+  {
+    city: "Sapopema - PR",
+    resources: ["CRAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
+  },
+  {
+    city: "Ventania - PR",
+    resources: ["CRAS", "Conselho Tutelar", "Secretaria Municipal de Assistência Social"]
   }
 ]
 
@@ -139,7 +138,7 @@ export function AssistanceSection() {
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
             Conheça os serviços e organizações que oferecem suporte a pessoas em situação de vulnerabilidade 
-            na região de Telêmaco Borba e municípios vizinhos.
+            em Telêmaco Borba, Reserva, Ortigueira, Imbaú, Tibagi, Cândido de Abreu, Sapopema, Ventania e municípios vizinhos.
           </p>
         </div>
 
@@ -154,7 +153,7 @@ export function AssistanceSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
             <h3 className="text-2xl font-bold text-white mb-2">Região dos Campos Gerais</h3>
-            <p className="text-white/90">Telêmaco Borba, Reserva, Ortigueira, Imbaú e região</p>
+            <p className="text-white/90">Telêmaco Borba, Reserva, Ortigueira, Imbaú, Tibagi, Cândido de Abreu, Sapopema e Ventania</p>
           </div>
         </div>
 
@@ -187,9 +186,13 @@ export function AssistanceSection() {
             <MapPin className="w-5 h-5 text-primary" />
             Serviços de Assistência Social por Município
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
             {localResources.map((city, cityIndex) => (
-              <div key={cityIndex} className="rounded-xl border border-border bg-card overflow-hidden">
+              <div
+                key={cityIndex}
+                className="fade-up rounded-xl border border-border bg-card overflow-hidden hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                style={{ animationDelay: `${cityIndex * 70}ms` }}
+              >
                 <div className="bg-primary/10 px-6 py-4 border-b border-border">
                   <h4 className="font-bold text-foreground text-lg flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" />
@@ -203,12 +206,8 @@ export function AssistanceSection() {
                         <Building className="w-4 h-4 text-muted-foreground" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h5 className="font-semibold text-foreground text-sm">{resource.name}</h5>
-                        <p className="text-xs text-muted-foreground">{resource.address}</p>
-                        <a href={`tel:${resource.phone.replace(/\D/g, '')}`} className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-1">
-                          <Phone className="w-3 h-3" />
-                          {resource.phone}
-                        </a>
+                        <h5 className="font-semibold text-foreground text-sm">{resource}</h5>
+                        <p className="text-xs text-muted-foreground">Atendimento municipal e encaminhamento à rede de proteção.</p>
                       </div>
                     </div>
                   ))}
